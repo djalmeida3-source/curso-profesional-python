@@ -17,4 +17,16 @@ def random_func():
         pass
 
 
+@execution_time
+def suma(a: int, b: int) -> int:
+    return a + b
+
+
+@execution_time
+def saludo(nombre="Cesar"):
+    print("Hola " + nombre)
+
+
 random_func()
+suma(5,5)
+saludo("David")
