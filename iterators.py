@@ -2,6 +2,9 @@ import time
 
 class FiboIter():
 
+    def __init__(self, fibo_limit: int = None):
+        self.max = fibo_limit
+
     def __iter__(self):
         self.n1 = 0
         self.n2 = 1
@@ -16,15 +19,19 @@ class FiboIter():
             self.counter += 1
             return self.n2
         else:
-            self.aux = self.n1 + self.n2
-            # self.n1 = self.n2
-            # self.n2 = self.aux
-            self.n1, self.n2 = self.n2, self.aux
-            self.counter += 1
-            return self.aux
+            if self.counter < self.max:
+                self.aux = self.n1 + self.n2
+                # self.n1 = self.n2
+                # self.n2 = self.aux
+                self.n1, self.n2 = self.n2, self.aux
+                self.counter += 1
+                return self.aux
+            else:
+                raise StopIteration
 
 if __name__ == '__main__':
-    fibonacci = FiboIter()
+    fibo_limit = int(input("Ingrese el limite para la serie de Fibonacci: "))
+    fibonacci = FiboIter(fibo_limit)
     for element in fibonacci:
         print(element)
         time.sleep(0.05)
